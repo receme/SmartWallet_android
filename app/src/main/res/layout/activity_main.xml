@@ -26,7 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_centerVertical="true"
             android:text="Small Text"
-            android:id="@+id/textView2"/>
+            android:id="@+id/totalAmountTv"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:text="@string/add"
-            android:id="@+id/button"/>
+            android:id="@+id/addAmountBtn"/>
     </RelativeLayout>
 
     <TextView
@@ -51,14 +51,14 @@
         android:inputType="number"
         android:hint="@string/amount"
 
-        android:id="@+id/editText"/>
+        android:id="@+id/amountEdtxt"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="@string/reason"
-        android:id="@+id/editText2"/>
+        android:id="@+id/reasonEdtxt"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -75,9 +75,9 @@
         android:text="@string/history"
         android:id="@+id/textView4"/>
 
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/historyItemList"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/historyItemList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
 
