@@ -1,6 +1,6 @@
 package com.rcmapps.smartwallet.interfaces;
 
-import com.rcmapps.smartwallet.models.Expense;
+import com.rcmapps.smartwallet.db.Expense;
 
 import java.util.List;
 

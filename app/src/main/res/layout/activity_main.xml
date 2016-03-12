@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
+
+    <ScrollView
+        android:id="@+id/upperPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -13,7 +24,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/total"
             android:id="@+id/textView">
-            <requestFocus/>
         </TextView>
 
     <RelativeLayout
@@ -66,18 +76,32 @@
         android:text="@string/add"
         android:id="@+id/addExpenseBtn"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/history"
-        android:id="@+id/textView4"/>
+    </LinearLayout>
+    </ScrollView>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/historyItemList"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upperPanel">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/history"
+            android:id="@+id/textView4"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/historyItemList"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
 

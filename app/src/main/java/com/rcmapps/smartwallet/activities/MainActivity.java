@@ -7,9 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.rcmapps.smartwallet.ApplicationObject;
 import com.rcmapps.smartwallet.R;
+import com.rcmapps.smartwallet.db.DbManager;
+import com.rcmapps.smartwallet.db.Expense;
 import com.rcmapps.smartwallet.interfaces.IMainactivity;
-import com.rcmapps.smartwallet.models.Expense;
 import com.rcmapps.smartwallet.presenters.MainPresenter;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements IMainactivity{
     @Bind(R.id.addAmountBtn) Button addAmountBtn;
     @Bind(R.id.amountEdtxt) EditText amountEdtxt;
     @Bind(R.id.reasonEdtxt) EditText reasonEdtxt;
-    @Bind(R.id.addExpenseBtn) EditText addExpenseBtn;
+    @Bind(R.id.addExpenseBtn) Button addExpenseBtn;
     @Bind(R.id.historyItemList) RecyclerView historyItemList;
 
     private MainPresenter presenter;
@@ -34,15 +36,16 @@ public class MainActivity extends AppCompatActivity implements IMainactivity{
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        presenter = new MainPresenter(this);
+        presenter = new MainPresenter(this,ApplicationObject.dbManager);
         presenter.init();
+
 
 
     }
 
     @Override
     public void loadTotalAmount(int amount) {
-
+        totalAmountTv.setText(Integer.toString(amount));
     }
 
     @Override
