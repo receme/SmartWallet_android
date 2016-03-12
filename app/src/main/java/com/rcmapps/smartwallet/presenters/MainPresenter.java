@@ -13,5 +13,7 @@ public class MainPresenter {
 
     public void init(){
 
+        view.loadTotalAmount(0);
+        view.loadHistory(null);
     }
 }

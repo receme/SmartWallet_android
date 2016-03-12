@@ -9,7 +9,10 @@ import android.widget.TextView;
 
 import com.rcmapps.smartwallet.R;
 import com.rcmapps.smartwallet.interfaces.IMainactivity;
+import com.rcmapps.smartwallet.models.Expense;
 import com.rcmapps.smartwallet.presenters.MainPresenter;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,6 +36,18 @@ public class MainActivity extends AppCompatActivity implements IMainactivity{
 
         presenter = new MainPresenter(this);
         presenter.init();
+
+
+    }
+
+    @Override
+    public void loadTotalAmount(int amount) {
+
+    }
+
+    @Override
+    public void loadHistory(List<Expense> expenses) {
+
     }
 
     @Override
