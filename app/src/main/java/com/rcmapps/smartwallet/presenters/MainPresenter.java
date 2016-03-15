@@ -1,9 +1,12 @@
 package com.rcmapps.smartwallet.presenters;
 
 import com.rcmapps.smartwallet.db.Budget;
+import com.rcmapps.smartwallet.db.Expense;
 import com.rcmapps.smartwallet.interfaces.IDbmanager;
 import com.rcmapps.smartwallet.interfaces.IMainactivity;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,6 +15,7 @@ import java.util.List;
 public class MainPresenter {
     private IMainactivity view;
     private IDbmanager dbManager;
+
     public MainPresenter(IMainactivity _view,IDbmanager _dbmanager) {
         this.view = _view;
         this.dbManager = _dbmanager;
@@ -20,7 +24,10 @@ public class MainPresenter {
     public void init(){
 
         view.loadTotalAmount(getTotalAmount());
-        view.loadHistory(dbManager.getExpenseHistory());
+        //view.loadHistory(dbManager.getExpenseHistory());
+        List<Expense> list  =new ArrayList<Expense>();
+        list.add(new Expense(1L,100,"asdasd",new Date()));
+        view.loadHistory(list);
     }
 
     public int getTotalAmount(){
