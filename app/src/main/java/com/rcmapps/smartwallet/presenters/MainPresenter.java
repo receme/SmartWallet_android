@@ -24,18 +24,18 @@ public class MainPresenter {
     public void init(){
 
         view.loadTotalAmount(getTotalAmount());
-        //view.loadHistory(dbManager.getExpenseHistory());
-        List<Expense> list  =new ArrayList<Expense>();
-        list.add(new Expense(1L,100,"asdasd",new Date()));
-        view.loadHistory(list);
+        view.loadHistory(dbManager.getExpenseHistory());
+
     }
 
     public int getTotalAmount(){
         List<Budget> entries = dbManager.getBudgetEntries();
         int total = 0;
-        for (Budget budget: entries) {
-            int amount = budget.getTotal_amount();
-            total+=amount;
+        if(entries!=null) {
+            for (Budget budget : entries) {
+                int amount = budget.getTotal_amount();
+                total += amount;
+            }
         }
 
         return total;
