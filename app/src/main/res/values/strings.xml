@@ -6,4 +6,6 @@
     <string name="amount">amount</string>
     <string name="reason">reason</string>
     <string name="history">History:</string>
+    <string name="ok">Ok</string>
+
 </resources>

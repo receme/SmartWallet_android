@@ -11,8 +11,13 @@ public interface IMainactivity {
 
     void loadTotalAmount(int amount);
     void loadHistory(List<Expense> expenses);
-    void AddAmount(int amount);
-    void AddExpense(int amount,String reason);
+    void showAddAmountDialog();
+    void addAmount(int amount);
+    void addExpense(int amount,String reason);
+
+    void showAmountErrorMessage(String message);
+    void showReasonErrorMessage(String message);
+
 
 
 }

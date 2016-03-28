@@ -40,4 +40,27 @@ public class MainPresenter {
 
         return total;
     }
+
+    public void expenseValidation(String amount,String reason){
+
+        if(amount.length()==0){
+            view.showAmountErrorMessage("Expense ammount should not be empty.");
+            return;
+        }
+
+        int amountVal = Integer.parseInt(amount);
+
+        if(amountVal <= 0 ){
+            view.showAmountErrorMessage("Expense ammount should be a value greater than zero.");
+            return;
+        }
+
+        if (reason == null || reason.length() ==0){
+            view.showReasonErrorMessage("There should be a reason for expense");
+            return;
+        }
+
+        view.addExpense(amountVal,reason);
+    }
+
 }
