@@ -2,7 +2,6 @@ package com.rcmapps.smartwallet.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rcmapps.smartwallet.ApplicationObject;
 import com.rcmapps.smartwallet.R;
@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         AddBudgetFragment addBudgetFragment = new AddBudgetFragment();
-        addBudgetFragment.show(fragmentManager,"add_budget_dialog");
+        addBudgetFragment.setPresenter(presenter);
+        addBudgetFragment.show(fragmentManager, "add_budget_dialog");
     }
 
     @Override
@@ -106,13 +107,33 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
     }
 
     @Override
+    public void OnBudgetAddSuccess(String message) {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void OnBudgetAddFailure(String message) {
+
+    }
+
+    @Override
+    public void OnExpenseAddSuccess(String message) {
+
+    }
+
+    @Override
+    public void OnExpenseAddFailure(String message) {
+
+    }
+
+    @Override
     public void onClick(View v) {
         if (v == addAmountBtn) {
             showAddAmountDialog();
         } else if (v == addExpenseBtn) {
 
             presenter.expenseValidation(amountEdtxt.getText().toString()
-                    ,reasonEdtxt.getText().toString());
+                    , reasonEdtxt.getText().toString());
         }
     }
 }
