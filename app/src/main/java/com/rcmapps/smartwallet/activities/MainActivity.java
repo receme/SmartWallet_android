@@ -1,6 +1,9 @@
 package com.rcmapps.smartwallet.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,9 +42,14 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
     @Bind(R.id.historyItemList)
     RecyclerView historyItemList;
 
+    @Bind(R.id.coordinateLayout)
+    CoordinatorLayout coordinatorLayout;
+
     private LinearLayoutManager mLinearLayoutManager;
 
     private MainPresenter presenter;
+
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,12 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
         presenter.init();
 
 
+        snackbar = Snackbar
+                .make(coordinatorLayout, "", Snackbar.LENGTH_SHORT);
+        View snackBarview = snackbar.getView();
+        snackBarview.setBackgroundColor(Color.parseColor("#3F51B5"));
+        TextView textView = (TextView) snackBarview.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.WHITE);
     }
 
     @Override
@@ -99,11 +113,17 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
     @Override
     public void showAmountErrorMessage(String message) {
         amountEdtxt.setError(message);
+
+        snackbar.setText(message);
+        snackbar.show();
     }
 
     @Override
     public void showReasonErrorMessage(String message) {
         reasonEdtxt.setError(message);
+
+        snackbar.setText(message);
+        snackbar.show();
     }
 
     @Override
