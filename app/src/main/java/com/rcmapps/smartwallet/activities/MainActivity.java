@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.rcmapps.smartwallet.ApplicationObject;
 import com.rcmapps.smartwallet.R;
 import com.rcmapps.smartwallet.adapters.ExpenseHistoryListApapter;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements IMainactivity, View.OnClickListener {
 
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Fabric.with(this, new Crashlytics());
         ButterKnife.bind(this);
 
         addAmountBtn.setOnClickListener(this);
@@ -71,7 +74,13 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
         snackBarview.setBackgroundColor(Color.parseColor("#3F51B5"));
         TextView textView = (TextView) snackBarview.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
+
     }
+
+    /*public void forceCrash() {
+        throw new RuntimeException("This is a crash");
+    }*/
+
 
     @Override
     public void loadTotalAmount(int amount) {
