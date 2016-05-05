@@ -25,13 +25,13 @@ public interface IMainactivity {
 
     void showReasonErrorMessage(String message);
 
-    void onBudgetAddSuccess(String message);
+    void onBudgetAddSuccess();
 
-    void onBudgetAddFailure(String message);
+    void onBudgetAddFailure();
 
-    void onExpenseAddSuccess(String message);
+    void onExpenseAddSuccess();
 
-    void onExpenseAddFailure(String message);
+    void onExpenseAddFailure();
 
     void clearExpenseEntryFields();
 

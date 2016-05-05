@@ -30,16 +30,17 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:text="@string/ok"
-            android:id="@+id/okBtn"/>
+            android:text="@string/cancel"
+            android:id="@+id/button"
+            style="?android:attr/buttonBarButtonStyle"/>
 
         <Button
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/cancel"
-            android:id="@+id/button"/>
+            android:text="@string/ok"
+            android:id="@+id/okBtn"
+            style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
 
 

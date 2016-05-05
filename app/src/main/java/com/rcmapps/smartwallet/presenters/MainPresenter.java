@@ -67,19 +67,32 @@ public class MainPresenter {
 
     public void addBudget(int amount) {
         //here access db method to increase budget;
+        long response = dbManager.increaseBudget(new Budget(amount,DateUtilMethods.getCurrentDate(),DateUtilMethods.getCurrentMonthName()));
 
-        view.onBudgetAddSuccess("success");
+        if(response == -1){
+            view.onBudgetAddFailure();
+        }
+        else{
+            view.onBudgetAddSuccess();
+            view.loadTotalAmount(getTotalAmount());
+        }
+
     }
 
     public void addExpense(int amount,String reason){
         Expense expense = new Expense(amount, reason, DateUtilMethods.getCurrentDate());
-        dbManager.addExpense(expense);
-        view.onExpenseAddSuccess("Successfully added");
-        this.expenses.add(expense);
+        long response = dbManager.addExpense(expense);
 
-        view.refreshHistoryList(this.expenses);
+        if(response == -1){
+            view.onExpenseAddFailure();
+        }
+        else{
+            view.onExpenseAddSuccess();
+            this.expenses.add(expense);
+            view.refreshHistoryList(this.expenses);
+            view.clearExpenseEntryFields();
+        }
 
-        view.clearExpenseEntryFields();
     }
 
     public List<Expense> getExpenses(){

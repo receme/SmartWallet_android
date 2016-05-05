@@ -14,4 +14,10 @@ public class DateUtilMethods {
         //SimpleDateFormat sf = new SimpleDateFormat("MMM dd,YYYY HH:mm a");
         return cal.getTime();
     }
+
+    public static String getCurrentMonthName(){
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sf = new SimpleDateFormat("MMM");
+        return sf.format(cal.getTime());
+    }
 }

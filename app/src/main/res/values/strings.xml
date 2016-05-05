@@ -6,7 +6,13 @@
     <string name="amount">amount</string>
     <string name="reason">reason</string>
     <string name="history">History:</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+
+    <string name="budget_add_success_msg">Successfully added</string>
+    <string name="budget_add_failure_msg">Something went wrong. Please try again.</string>
+
+    <string name="expense_add_success_msg">Successfully added</string>
+    <string name="expense_add_failure_msg">Something went wrong. Please try again.</string>
 
 </resources>

@@ -18,8 +18,7 @@ public class Budget {
         this.id = id;
     }
 
-    public Budget(Long id, Integer total_amount, java.util.Date last_update, String budget_month) {
-        this.id = id;
+    public Budget(Integer total_amount, java.util.Date last_update, String budget_month) {
         this.total_amount = total_amount;
         this.last_update = last_update;
         this.budget_month = budget_month;

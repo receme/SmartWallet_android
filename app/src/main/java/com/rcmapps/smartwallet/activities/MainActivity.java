@@ -149,23 +149,23 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
     }
 
     @Override
-    public void onBudgetAddSuccess(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    public void onBudgetAddSuccess() {
+        Toast.makeText(this,getString(R.string.budget_add_success_msg),Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onBudgetAddFailure(String message) {
-
+    public void onBudgetAddFailure() {
+        Toast.makeText(this,getString(R.string.budget_add_failure_msg),Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onExpenseAddSuccess(String message) {
-
+    public void onExpenseAddSuccess() {
+        Toast.makeText(this,getString(R.string.expense_add_failure_msg),Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onExpenseAddFailure(String message) {
-
+    public void onExpenseAddFailure() {
+        Toast.makeText(this,getString(R.string.expense_add_failure_msg),Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -176,9 +176,9 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
 
     @Override
     public void onClick(View v) {
-        if (v == addAmountBtn) {
+        if (v.equals(addAmountBtn)) {
             showAddAmountDialog();
-        } else if (v == addExpenseBtn) {
+        } else if (v.equals(addExpenseBtn)) {
 
             presenter.expenseValidation(amountEdtxt.getText().toString()
                     , reasonEdtxt.getText().toString());

@@ -27,7 +27,7 @@ public class BudgetDao extends AbstractDao<Budget, Long> {
         public final static Property Total_amount = new Property(1, Integer.class, "total_amount", false, "TOTAL_AMOUNT");
         public final static Property Last_update = new Property(2, java.util.Date.class, "last_update", false, "LAST_UPDATE");
         public final static Property Budget_month = new Property(3, String.class, "budget_month", false, "BUDGET_MONTH");
-    };
+    }
 
 
     public BudgetDao(DaoConfig config) {
@@ -89,13 +89,13 @@ public class BudgetDao extends AbstractDao<Budget, Long> {
     /** @inheritdoc */
     @Override
     public Budget readEntity(Cursor cursor, int offset) {
-        Budget entity = new Budget( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+        return new Budget( //
+            //cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // total_amount
             cursor.isNull(offset + 2) ? null : new java.util.Date(cursor.getLong(offset + 2)), // last_update
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // budget_month
         );
-        return entity;
+
     }
      
     /** @inheritdoc */

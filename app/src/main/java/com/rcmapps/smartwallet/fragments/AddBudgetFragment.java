@@ -51,7 +51,7 @@ public class AddBudgetFragment extends DialogFragment implements IAddBudgetFragm
 
     @Override
     public void onClick(View v) {
-        if (v == okBtn) {
+        if (v.equals(okBtn)) {
             presenter.newBudgetValidation(amountEdtxt.getText().toString());
         }
     }

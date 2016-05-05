@@ -11,8 +11,8 @@ import java.util.List;
  */
 public interface IDbmanager {
 
-    void increaseBudget(Budget budget);
-    void addExpense(Expense expense);
+    long increaseBudget(Budget budget);
+    long addExpense(Expense expense);
     void updateExpense(Expense expense);
     void deleteExpense(Expense expense);
     List<Expense> getExpenseHistory();

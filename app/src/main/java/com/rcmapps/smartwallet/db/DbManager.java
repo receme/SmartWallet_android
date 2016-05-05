@@ -39,23 +39,23 @@ public class DbManager implements IDbmanager {
     }
 
     @Override
-    public void increaseBudget(Budget budget) {
-        budgetDao.insert(budget);
+    public long increaseBudget(Budget budget) {
+        return budgetDao.insert(budget);
     }
 
     @Override
-    public void addExpense(Expense expense) {
-        expenseDao.insert(expense);
+    public long addExpense(Expense expense) {
+        return expenseDao.insert(expense);
     }
 
     @Override
     public void updateExpense(Expense expense) {
-        expenseDao.update(expense);
+         expenseDao.update(expense);
     }
 
     @Override
     public void deleteExpense(Expense expense) {
-        expenseDao.delete(expense);
+         expenseDao.delete(expense);
     }
 
     @Override
@@ -64,12 +64,17 @@ public class DbManager implements IDbmanager {
         if(expenses==null){
             expenses = new ArrayList<>();
         }
-
         return expenses;
     }
 
     @Override
     public List<Budget> getBudgetEntries() {
-        return budgetDao.loadAll();
+        List<Budget> budgets =  budgetDao.loadAll();
+
+        if(budgets == null){
+            budgets = new ArrayList<>();
+        }
+
+        return budgets;
     }
 }
