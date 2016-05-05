@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.rcmapps.smartwallet.interfaces.IDbmanager;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +60,12 @@ public class DbManager implements IDbmanager {
 
     @Override
     public List<Expense> getExpenseHistory() {
-        return expenseDao.loadAll();
+        List<Expense> expenses = expenseDao.loadAll();
+        if(expenses==null){
+            expenses = new ArrayList<>();
+        }
+
+        return expenses;
     }
 
     @Override

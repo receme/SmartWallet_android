@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
     private MainPresenter presenter;
 
     private Snackbar snackbar;
+    private ExpenseHistoryListApapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
     @Override
     public void loadHistory(List<Expense> expenses) {
 
-        ExpenseHistoryListApapter adapter = new ExpenseHistoryListApapter(this, expenses);
+        adapter = new ExpenseHistoryListApapter(this, expenses);
         historyItemList.setHasFixedSize(true);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -98,6 +99,18 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
         historyItemList.setLayoutManager(mLinearLayoutManager);
 
         historyItemList.setAdapter(adapter);
+    }
+
+    @Override
+    public void refreshHistoryList(List<Expense> expenses) {
+
+        int position = expenses.size()-1;
+        adapter.notifyItemInserted(position);
+        adapter.notifyItemRangeChanged(position, expenses.size());
+        adapter.notifyDataSetChanged();
+
+        //scroll to updated item
+        historyItemList.smoothScrollToPosition(position);
     }
 
     @Override
@@ -116,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
 
     @Override
     public void addExpense(int amount, String reason) {
-
+        presenter.addExpense(amount,reason);
     }
 
     @Override
@@ -136,23 +149,29 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
     }
 
     @Override
-    public void OnBudgetAddSuccess(String message) {
+    public void onBudgetAddSuccess(String message) {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void OnBudgetAddFailure(String message) {
+    public void onBudgetAddFailure(String message) {
 
     }
 
     @Override
-    public void OnExpenseAddSuccess(String message) {
+    public void onExpenseAddSuccess(String message) {
 
     }
 
     @Override
-    public void OnExpenseAddFailure(String message) {
+    public void onExpenseAddFailure(String message) {
 
+    }
+
+    @Override
+    public void clearExpenseEntryFields() {
+        amountEdtxt.setText("");
+        reasonEdtxt.setText("");
     }
 
     @Override

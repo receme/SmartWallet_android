@@ -1,17 +1,22 @@
 package com.rcmapps.smartwallet.presenters;
 
 import com.rcmapps.smartwallet.db.Budget;
+import com.rcmapps.smartwallet.db.Expense;
 import com.rcmapps.smartwallet.interfaces.IDbmanager;
 import com.rcmapps.smartwallet.interfaces.IMainactivity;
+import com.rcmapps.smartwallet.utils.DateUtilMethods;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by receme on 3/10/16.
  */
 public class MainPresenter {
+
     private IMainactivity view;
     private IDbmanager dbManager;
+    private List<Expense> expenses;
 
     public MainPresenter(IMainactivity _view, IDbmanager _dbmanager) {
         this.view = _view;
@@ -19,9 +24,9 @@ public class MainPresenter {
     }
 
     public void init() {
-
+        this.expenses  = dbManager.getExpenseHistory();
         view.loadTotalAmount(getTotalAmount());
-        view.loadHistory(dbManager.getExpenseHistory());
+        view.loadHistory(expenses);
 
     }
 
@@ -60,12 +65,31 @@ public class MainPresenter {
         view.addExpense(amountVal, reason);
     }
 
-    public void addBudget(int amount){
+    public void addBudget(int amount) {
         //here access db method to increase budget;
 
-        view.OnBudgetAddSuccess("success");
+        view.onBudgetAddSuccess("success");
     }
 
+    public void addExpense(int amount,String reason){
+        Expense expense = new Expense(amount, reason, DateUtilMethods.getCurrentDate());
+        dbManager.addExpense(expense);
+        view.onExpenseAddSuccess("Successfully added");
+        this.expenses.add(expense);
+
+        view.refreshHistoryList(this.expenses);
+
+        view.clearExpenseEntryFields();
+    }
+
+    public List<Expense> getExpenses(){
+        if(expenses!=null){
+            return expenses;
+        }
+        else{
+            return new ArrayList<Expense>();
+        }
+    }
 
 
 }

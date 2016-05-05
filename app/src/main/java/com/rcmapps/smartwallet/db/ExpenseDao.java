@@ -90,7 +90,7 @@ public class ExpenseDao extends AbstractDao<Expense, Long> {
     @Override
     public Expense readEntity(Cursor cursor, int offset) {
         Expense entity = new Expense( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            //cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getInt(offset + 1), // amount
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // reason
             cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)) // date

@@ -18,8 +18,7 @@ public class Expense {
         this.id = id;
     }
 
-    public Expense(Long id, Integer amount, String reason, java.util.Date date) {
-        this.id = id;
+    public Expense(Integer amount, String reason, java.util.Date date) {
         this.amount = amount;
         this.reason = reason;
         this.date = date;

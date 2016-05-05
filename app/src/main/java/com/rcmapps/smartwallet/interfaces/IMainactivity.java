@@ -13,6 +13,8 @@ public interface IMainactivity {
 
     void loadHistory(List<Expense> expenses);
 
+    void refreshHistoryList(List<Expense> expenses);
+
     void showAddAmountDialog();
 
     void addAmount(int amount);
@@ -23,14 +25,14 @@ public interface IMainactivity {
 
     void showReasonErrorMessage(String message);
 
+    void onBudgetAddSuccess(String message);
 
-    void OnBudgetAddSuccess(String message);
+    void onBudgetAddFailure(String message);
 
-    void OnBudgetAddFailure(String message);
+    void onExpenseAddSuccess(String message);
 
-    void OnExpenseAddSuccess(String message);
+    void onExpenseAddFailure(String message);
 
-    void OnExpenseAddFailure(String message);
-
+    void clearExpenseEntryFields();
 
 }
