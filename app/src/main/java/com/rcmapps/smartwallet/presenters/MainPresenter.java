@@ -43,6 +43,10 @@ public class MainPresenter {
         return total;
     }
 
+    public void updateTotalAmount(int expense){
+        dbManager.updateBudget(new Budget(expense*-1,DateUtilMethods.getCurrentDate(),DateUtilMethods.getCurrentMonthName()));
+    }
+
     public void expenseValidation(String amount, String reason) {
 
         if (amount.length() == 0) {
@@ -67,7 +71,7 @@ public class MainPresenter {
 
     public void addBudget(int amount) {
         //here access db method to increase budget;
-        long response = dbManager.increaseBudget(new Budget(amount,DateUtilMethods.getCurrentDate(),DateUtilMethods.getCurrentMonthName()));
+        long response = dbManager.updateBudget(new Budget(amount,DateUtilMethods.getCurrentDate(),DateUtilMethods.getCurrentMonthName()));
 
         if(response == -1){
             view.onBudgetAddFailure();
@@ -89,6 +93,10 @@ public class MainPresenter {
         else{
             view.onExpenseAddSuccess();
             this.expenses.add(expense);
+
+            updateTotalAmount(amount);
+            view.loadTotalAmount(getTotalAmount());
+
             view.refreshHistoryList(this.expenses);
             view.clearExpenseEntryFields();
         }

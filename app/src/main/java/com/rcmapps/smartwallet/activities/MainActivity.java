@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements IMainactivity, Vi
 
     @Override
     public void onExpenseAddSuccess() {
-        Toast.makeText(this,getString(R.string.expense_add_failure_msg),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,getString(R.string.expense_add_success_msg),Toast.LENGTH_SHORT).show();
     }
 
     @Override

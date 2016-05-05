@@ -39,7 +39,7 @@ public class DbManager implements IDbmanager {
     }
 
     @Override
-    public long increaseBudget(Budget budget) {
+    public long updateBudget(Budget budget) {
         return budgetDao.insert(budget);
     }
 
