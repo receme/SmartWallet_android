@@ -25,6 +25,11 @@ public class MainPresenter {
 
     public void init() {
         this.expenses  = dbManager.getExpenseHistory();
+
+        if(expenses.isEmpty()){
+            expenses = new ArrayList<>();
+        }
+
         view.loadTotalAmount(getTotalAmount());
         view.loadHistory(expenses);
 
@@ -44,7 +49,7 @@ public class MainPresenter {
     }
 
     public void updateTotalAmount(int expense){
-        dbManager.updateBudget(new Budget(expense*-1,DateUtilMethods.getCurrentDate(),DateUtilMethods.getCurrentMonthName()));
+        dbManager.updateBudget(new Budget(expense * -1,DateUtilMethods.getCurrentDate(),DateUtilMethods.getCurrentMonthName()));
     }
 
     public void expenseValidation(String amount, String reason) {
@@ -71,7 +76,7 @@ public class MainPresenter {
 
     public void addBudget(int amount) {
         //here access db method to increase budget;
-        long response = dbManager.updateBudget(new Budget(amount,DateUtilMethods.getCurrentDate(),DateUtilMethods.getCurrentMonthName()));
+        long response = dbManager.updateBudget(new Budget(amount, DateUtilMethods.getCurrentDate(), DateUtilMethods.getCurrentMonthName()));
 
         if(response == -1){
             view.onBudgetAddFailure();
@@ -92,12 +97,12 @@ public class MainPresenter {
         }
         else{
             view.onExpenseAddSuccess();
-            this.expenses.add(expense);
+            expenses.add(expense);
 
             updateTotalAmount(amount);
             view.loadTotalAmount(getTotalAmount());
 
-            view.refreshHistoryList(this.expenses);
+            view.refreshHistoryList(expenses);
             view.clearExpenseEntryFields();
         }
 

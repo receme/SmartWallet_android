@@ -60,21 +60,11 @@ public class DbManager implements IDbmanager {
 
     @Override
     public List<Expense> getExpenseHistory() {
-        List<Expense> expenses = expenseDao.loadAll();
-        if(expenses==null){
-            expenses = new ArrayList<>();
-        }
-        return expenses;
+        return expenseDao.loadAll();
     }
 
     @Override
     public List<Budget> getBudgetEntries() {
-        List<Budget> budgets =  budgetDao.loadAll();
-
-        if(budgets == null){
-            budgets = new ArrayList<>();
-        }
-
-        return budgets;
+        return  budgetDao.loadAll();
     }
 }
